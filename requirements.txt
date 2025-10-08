@@ -1,0 +1,32 @@
+# --- Data Handling & APIs ---
+pandas
+numpy
+requests
+yfinance
+python-dotenv
+pyyaml
+
+# --- Object Storage / S3 ---
+boto3
+minio
+
+# --- Database / Warehouse ---
+psycopg2-binary
+sqlalchemy
+dbt-snowflake
+snowflake-connector-python
+
+# --- Transformations ---
+dbt-core
+dbt-postgres
+
+# --- Data Quality ---
+great-expectations
+
+
+# --- Utilities ---
+pendulum
+rich
+tabulate
+
+apache-airflow-providers-amazon

@@ -1,0 +1,10 @@
+name: 'dbt_finance'
+version: '1.0'
+profile: 'dbt_finance'
+models:
+  dbt_finance:
+    +materialized: table
+    staging:
+      +schema: staging
+    marts:
+      +schema: analytics

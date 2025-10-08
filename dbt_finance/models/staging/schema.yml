@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: raw
+    database: MARKET_PULSE      # your Snowflake database
+    schema: RAW                 # your schema
+    tables:
+      - name: RAW_ALPHAVANTAGE  # 👈 must match exactly what’s in Snowflake
+        description: "Raw JSON data from Alpha Vantage API stored in Snowflake"
+
+models:
+  - name: stg_alphavantage
+    description: "Flattened Alpha Vantage daily stock prices extracted from nested JSON"
+    columns:
+      - name: symbol
+        description: "Stock ticker symbol"
+        tests: [not_null]
+      - name: trading_date
+        description: "Trading date of the stock price"
+        tests: [not_null, unique]
+      - name: open
+        description: "Opening price for the day"
+      - name: close
+        description: "Closing price for the day"
+      - name: volume
+        description: "Trading volume for the day"

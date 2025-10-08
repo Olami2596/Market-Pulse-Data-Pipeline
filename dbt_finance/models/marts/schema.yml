@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: dim_stock
+    description: "Static dimension mapping stock symbols to company names and sectors"
+    columns:
+      - name: symbol
+        description: "Stock ticker symbol"
+        tests: [unique, not_null]
+      - name: company_name
+        description: "Full company name associated with the stock"
+      - name: sector
+        description: "Economic sector the company operates in"
+
+  - name: fact_stock_prices
+    description: "Fact table containing daily price metrics and company metadata"
+    columns:
+      - name: symbol
+        description: "Stock ticker symbol"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_stock')
+              field: symbol
+      - name: trading_date
+        description: "Date of the stock price"
+        tests: [not_null]
+      - name: daily_change
+        description: "Difference between closing and opening prices"
+      - name: percent_change
+        description: "Percent change between open and close prices"
+      - name: company_name
+        description: "Name of the company for this symbol"
+      - name: sector
+        description: "Sector of the company"
+
+  - name: agg_weekly_prices
+    description: "Weekly aggregated stock prices with average close and percent change"
+    columns:
+      - name: symbol
+        description: "Stock ticker symbol"
+        tests: [not_null]
+      - name: week_start
+        description: "Start date of the trading week"
+        tests: [not_null]
+      - name: avg_close
+        description: "Average closing price during the week"
+      - name: avg_percent_change
+        description: "Average percent change during the week"
