@@ -57,7 +57,7 @@ Market Pulse is a modern data engineering project that automates the extraction,
 ### 2. Clone the Repository
 
 ```sh
-git clone <repo-url>
+git clone https://github.com/Olami2596/Market-Pulse-Data-Pipeline
 cd market_pulse
 ```
 
